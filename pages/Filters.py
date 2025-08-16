@@ -1,21 +1,26 @@
 import streamlit as st
 import pandas as pd 
-from Over
+from pages.Overview import selected
 
+st.title("Movie Filters")
 
-movies = pd.read_csv(r"C:\Users\d\Documents\python_projects\movie_recommendation_system\data\movies.csv")
-ratings = pd.read_csv(r"C:\Users\d\Documents\python_projects\movie_recommendation_system\data\ratings.csv") 
-
-merged = pd.merge(movies, ratings, on='movieId')
-avg_ratings = merged.groupby(['movieId', 'title', 'genres'])['rating'].mean().reset_index()
-selected = avg_ratings[['title', 'genres', 'rating']]
-st.write(selected.sort_values('rating', ascending=False).head(20))
-
-st.markdown("### Filters")
+st.markdown("### Filter movies based on rating : ")
 min_rating =st.slider("Select minimum rating :", 0.0, 5.0, 0.0, 0.1)
+max_rating = st.slider("Select maximum rating :", 0.0, 5.0, 5.0, 0.1)
 if st.button("Filter"):
-    filtered_movies = selected[selected['rating'] >= min_rating].sort_values('rating', ascending=False)
+    filtered_movies = selected[
+        (selected['rating'] >= min_rating)  & 
+        (selected['rating'] <= max_rating )].sort_values('rating', ascending=False)
     st.write(filtered_movies)
+
+
+st.markdown("### Filter movies based on genre : ")
+genres = selected['genres'].str.split('|').explode().unique()
+selected_genre = st.selectbox("Select a genre:", genres)
+st.write(f"Movies in the genre: {selected_genre}")
+filtered_by_genre = selected[selected['genres'].str.contains(selected_genre, case=False)]
+st.write(filtered_by_genre[['title', 'genres', 'rating']].sort_values('rating', ascending=False)) 
+
 
 
 
