@@ -1,10 +1,17 @@
 import streamlit as st
 import pandas as pd 
+import os 
    
 st.title("Movie overview")
+# Get the base directory (repo root)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-movies = pd.read_csv(r"C:\Users\d\Documents\python_projects\movie_recommendation_system\data\movies.csv")
-ratings = pd.read_csv(r"C:\Users\d\Documents\python_projects\movie_recommendation_system\data\ratings.csv") 
+# Go up one level if script is inside src/, else stay in root
+DATA_PATH = os.path.join(BASE_DIR, "data")
+
+# Read CSVs from the data folder
+movies = pd.read_csv(os.path.join(DATA_PATH, "movies.csv"))
+ratings = pd.read_csv(os.path.join(DATA_PATH, "ratings.csv"))
 
 merged = pd.merge(movies, ratings, on='movieId')
 avg_ratings = merged.groupby(['movieId', 'title', 'genres'])['rating'].mean().reset_index()
