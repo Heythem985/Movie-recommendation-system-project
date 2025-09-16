@@ -23,4 +23,4 @@ genre_matrix = vectorizer.fit_transform(data['genres'])
 similarity = cosine_similarity(genre_matrix)
 
 
-ratings = pd.read_csv(r"C:\Users\d\Documents\python_projects\movie_recommendation_system\data\ratings.csv") 
+
