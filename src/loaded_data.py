@@ -1,10 +1,13 @@
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import os 
 
- 
-# Load the data
-data = pd.read_csv(r"C:\Users\d\Documents\python_projects\movie_recommendation_system\data\movies.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, "..", "data", "movies.csv")
+
+data = pd.read_csv(DATA_PATH) 
+
 
 # Handle missing values
 data['genres'].fillna('', inplace=True)
