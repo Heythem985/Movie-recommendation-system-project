@@ -4,9 +4,7 @@ import os
    
 st.title("Movie overview")
 # Get the base directory (repo root)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Go up one level if script is inside src/, else stay in root
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_PATH = os.path.join(BASE_DIR, "data")
 
 # Read CSVs from the data folder
