@@ -3,7 +3,7 @@ import pandas as pd
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
-from model import recommend
+from src.model import recommend
 data = pd.read_csv("data/movies.csv")  # Update the path if needed
 
 
