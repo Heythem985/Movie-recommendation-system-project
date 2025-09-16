@@ -1,5 +1,5 @@
 import streamlit as st
-
+  
 st.title(" About Movie Magic")
 st.markdown("""
     Movie Magic is a movie recommendation system that helps you discover new films based on your preferences. 

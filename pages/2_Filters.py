@@ -1,10 +1,10 @@
 import streamlit as st
 import pandas as pd 
 import importlib
-Overview = importlib.import_module("pages.3_Overview")
+overview = importlib.import_module("pages.3_Overview")
 selected = overview.selected
-from pages.Overview import selected
 
+ 
 st.title("Movie Filters")
 
 st.markdown("### Filter movies based on rating : ")

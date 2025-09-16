@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd 
-
+   
 st.title("Movie overview")
 
 movies = pd.read_csv(r"C:\Users\d\Documents\python_projects\movie_recommendation_system\data\movies.csv")
